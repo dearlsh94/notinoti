@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "543452767372",
+    "firebase_url": "https://notinoti-d9a16.firebaseio.com",
+    "project_id": "notinoti-d9a16",
+    "storage_bucket": "notinoti-d9a16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543452767372:android:7b1c1c21f3a6c0d62387a9",
+        "android_client_info": {
+          "package_name": "com.shlee.notinoti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543452767372-52sp46s7is3n6u5k4jk6jn9rknjbiih4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVwtfFS074ntngCtqoqrNXI3C701s6b0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543452767372-52sp46s7is3n6u5k4jk6jn9rknjbiih4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

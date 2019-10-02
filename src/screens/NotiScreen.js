@@ -1,145 +1,63 @@
 import React, { Component } from 'react';
+import { Container, Header, Left, Body, Title, Right, Content, Button, Text } from 'native-base';
+import { observer, inject } from 'mobx-react';
 
-import { Container, Content, Item, ListItem, CheckBox, Body, Button, Text, Input, Textarea, Left, Right, Label } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import Notification from '../components/Notification';
+import NotificationOption from '../components/NotificationOption';
 
-import moment from 'moment';
+import { sendPushNotificationsAsync } from '../shared/push-noti';
 
-import DateTimePicker from 'react-native-modal-datetime-picker';
-
-export default class NotiScreen extends Component {
-  
-    static navigationOptions = {
-        title: 'Noti',
-    };
+@observer
+class NotiScreen extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-        title: '',
-        content: '',
-        chosenDate: 'what time noti you?',
-        isVisible: false,
-        };
-
-        // for focus ref
-        this.refTitle = React.createRef();
-        this.refContent = React.createRef();
     }
 
-    handlePicker = (newDate) => {
-        this.setState({ 
-            ...this.state,
-            chosenDate: moment(newDate).format('llll').toString(),
-        });
-        this.hidePicker();
-    }
-    showPicker = () => {
-        this.setState({
-            ...this.state,
-            isVisible: true,
-        });
-    }
-    hidePicker = () => {
-        this.setState({
-            ...this.state,
-            isVisible: false,
-        });
+    sendNoti = () => {
+        //sendPushNotificationsAsync(notiStore.title, notiStore.conntent);
     }
 
     render() {
 
         return (
-            <Container style={styles.notiContainer}>
-                <Grid>
-                    <Col>
-                        <Row style={styles.titleInput}>
-                        <Content>
-                            <Item floatingLabel>
-                            <Label>Title</Label>
-                                <Input 
-                                    name="title" />
-                            </Item>
-                        </Content>
-                        </Row>
-                        <Row>
-                        <Container 
-                            style={styles.contentArea}>
-                            <Label>Content</Label>
-                            <Textarea
-                                name="content"
-                                placeholder="content"
-                                rowSpan="10"
-                                bordered
-                                ref={ref => {
-                                this.refContent = ref;
-                                }}>
-                            </Textarea>
-                        </Container>
-                        </Row>
-                        <Row>
-                        <Content>
-                            <ListItem>
-                                <Left>
-                                    <Body>
-                                        <Text>즉시 전송</Text>
-                                    </Body>
-                                </Left>
-                                <Right>
-                                    <CheckBox checked={true} color="green"/>
-                                </Right>
-                            </ListItem>
-                            {/*
-                            <ListItem>
-                                <Left>
-                                    <Body>
-                                        <Text>스케쥴 등록</Text>
-                                    </Body>
-                                </Left>
-                                <Right>
-                                    <CheckBox checked={true} color="red"/>
-                                </Right>
-                            </ListItem>
-                            */}
-                        </Content>
-                        </Row>
-                        <Row>
-                        <Col>
-                            <Button block light
-                                onPress={this.showPicker}>
-                                <Text> 시간 선택 </Text>
-                            </Button>
-                            <Content>
-                            <DateTimePicker
-                                isVisible={this.state.isVisible}
-                                is24Hour={false}
-                                mode='datetime'
-                                onConfirm={this.handlePicker}
-                                onCancel={this.hidePicker}
-                                />
-                                <Body>
-                                    <Text>{this.state.chosenDate}</Text>
-                                </Body>
-                            </Content>
-                        </Col>
-                        </Row>
-                    </Col>
-                </Grid>
+            <Container>
+                <Header>
+                    <Left/>
+                    <Body>
+                        <Title>NotiNoti</Title>
+                    </Body>
+                    <Right />
+                </Header>
+                <Container style={styles.NotificationContainer}>
+                    <Notification/>
+                </Container>
+                <Container style={styles.OptionContainer}>
+                    <NotificationOption/>
+                </Container>
+                <Container>
+                    <Content>
+                        <Button full info last
+                            name="btnSend"
+                            onPress={this.sendNoti}>
+                            <Text>Send</Text>
+                        </Button>
+                    </Content>
+                </Container>
             </Container>
-        );
+        )
     }
 }
 
-//const styles = require('../css/styles.js');
 const styles = {
-    notiContainer: {
-
-    },
-    titleInput: {
+    NotificationContainer: {
+        flex: 2,
         backgroundColor: 'yellow',
     },
-    contentArea: {
-        backgroundColor: 'white',
-    }
+    OptionContainer: {
+        flex: 1,
+        backgroundColor: 'green',
+    },
 }
+
+export default NotiScreen;

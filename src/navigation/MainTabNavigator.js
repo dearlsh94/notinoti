@@ -12,6 +12,7 @@ import NotiScreen from '../screens/NotiScreen';
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
+  header: null,
 });
 
 /* Noti Navigator Start */

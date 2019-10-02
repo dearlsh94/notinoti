@@ -25,6 +25,13 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.shlee.notinoti"
+    },
+    "notification": {
+      "icon": "./assets/images/robot-dev.png"
     }
   }
 }
